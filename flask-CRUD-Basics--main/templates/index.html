@@ -1,0 +1,107 @@
+{%extends "base.html" %}
+{% block content %}
+<div class="content2" align="center">
+    <h1>Form</h1>
+</div>
+<hr>
+<div class="content">
+    <form method="post" class="details" name="details">
+        <p><b>
+        <label for="name">Name</label></b><br></p><p>
+        <input required type="text" name="name"placeholder="Name" style="height: 28px; width: 212px">
+    </p>
+    <p>
+    <b><label for="email">E-mail</label></b>
+    <br></p><p>
+        <input type="text" required name="email"placeholder="Mail ID" style="height: 28px; width: 212px">
+    </p>
+    <p>
+        <b><label for="number">Mobile Number</label></b>
+        <br></p><p>
+        <input type="tel" id="phone" name="number" pattern="[0-9]{10}" minlength="10" maxlength="10" style="height: 28px; width: 212px" placeholder="Phone Number" required>
+    </p>
+    <p>
+        <b><label for="category">Category</label></b>
+        <br> <br>
+        <input id="category-0" name="category" required type="radio" value="Student">
+        <label for="category-0">Student</label>
+        <input id="category-1" name="category" required type="radio" value="Professional">
+        <label for="category-1">Professional</label>
+        <input id="category-2" name="category" required type="radio" value="Organization">
+        <label for="category-2">Organization</label>
+    </p>
+    <p class="success success-hidden"></p>
+    <p class="error error-hidden"></p>
+    
+    <form action="{{ url_for('file') }}" method="post" type="file" enctype="multipart/form-data" accept="text/plain">
+            <label for="file">Insert File here</label>
+            <br><br>
+            <input name="file" required type="file" value="file">
+            
+        </form>
+        <div>
+            {%for text in file%}
+            <p>{{text}}</p>
+            {%endfor%}
+        </div>  
+    <br>      
+    <button class="btn" type="submit">Submit</button>
+    <br> 
+    </form>
+    
+</div>
+<hr>
+<div class="Search" align="center">
+    <form method="GET" action="{{ url_for('search')}}">
+        <label for="search-form">Search the data</label>
+        <br>
+        <table class="search-results" id="" align="center">
+            <tr>
+                <td class="search-results">
+                    <select name="refer" id="refer" required>
+                        <option type="email" value="email">E-mail</option>
+                        <option type="tel" value="number">Number</option>
+                       
+                    </select>
+                </td>
+                <td class="search-results"><input name="key" placeholder="Search" size="15"></td>
+                <td class="search-results"><button type="submit">Search</button></td>
+            </tr>
+        </table>
+    </form>
+    <br><br><br>
+</div>
+<div class="details-table" align="center" >
+    <table align="center">
+        <thead>
+            <th class="name">Name</th>
+            <th width="30%">Email</th>
+            <th width="10%" >Category</th>
+            <th>Number</th>
+            <th>Files</th>
+            <th> Modify </th>
+            
+        </thead>
+        {% for data in details %}
+        <tr>
+            <td>{{data["name"]}}</td>
+            <td>{{data["email"]}}</td>
+            <td>{{data["category"]}}</td>
+            <td>{{data["number"]}}</td>
+            <td>{{data["file"]}}</td>
+            <td>
+                <form method="POST" action="{{ url_for('delete', id=data['_id']) }}" >
+                    <input type="submit"  class="btnnd" value="Delete" onclick="return confirm('Are you sure to delete this entry?')">
+                </form>
+                <div class="home" >
+                    <form action="/edit/">
+                        <button id="Update-btn"  class="btnnu" type="submit">Update</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock  %}

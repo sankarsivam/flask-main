@@ -1,0 +1,57 @@
+{%extends "base.html" %}
+
+{%block content %}
+
+
+<h1 class="h1edit">Update Form</h1>
+<hr>
+<div class="content" padding-top="20%">
+    
+    
+<form method="POST" enctype="multipart/form-data" action="/update" class="details">
+   
+    <p>
+        <b><label for="name">Name </label></b>
+    </p>
+    <p>
+        <input type="text"  style="height: 28px; width: 212px" name="name"placeholder="Name" required>
+    </p>
+    <p>
+        <b><label for="email">E-mail</label></b>
+    </p>
+    <p>
+        <input type="email" pattern="[^ @]*@[^ @]*" style="height: 28px; width: 212px" name="email"placeholder="Mail ID" required>
+    </p>
+    <p>
+        <b><label for="number">Mobile Number</label></b>
+        <br>
+    </p>
+    <p>
+        <input type="tel" id="phone" name="number" pattern="[0-9]{10}" minlength="10" maxlength="10" placeholder="Phone Number"  style="height: 28px; width: 212px" required>
+    </p>
+
+    <p>
+        <b><label for="Category">Category</label></b>
+        <br><br>
+    
+        <input id="Category-0" name="Category" required type="radio" value="Student">
+        <label for="Category-0">Student</label>
+    
+        <input id="Category-1" name="Category" required type="radio" value="Professional">
+        <label for="Category-1">Professional</label>
+
+        <input id="Category-2" name="Category" required type="radio" value="Organization">
+        <label for="Category-2">Organization</label>
+    </p>    <br>
+    <p>
+        <input type="submit" value="Submit" class="btn">
+    </p>
+</form>
+</div><hr>
+<div class="content" >
+    <a href="/">Home</a>
+</div>
+<hr>
+
+
+{% endblock  %}}

@@ -1,0 +1,17 @@
+{%extends "base.html" %}
+
+{%block content %}
+    <div align="center" >
+        <form action="/delete/page/" method="post">
+            <p>
+                <b><label for="email">E-mail</label></b>
+                <br>
+            </p>
+            <p>
+                <input type="text" required name="email"placeholder="Mail ID" style="height: 28px; width: 212px">
+            </p>
+            <br>
+            <button class="btnnd" type="submit">Delete</button>    
+        </form>
+    </div>
+{%endblock%}
